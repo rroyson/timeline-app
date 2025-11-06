@@ -1,0 +1,30 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.*
+
+# Build outputs
+.next
+out
+build
+dist
+
+# Coverage
+coverage
+
+# Environment files
+.env*
+!.env.local.example
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# IDE
+.vscode
+.idea
+
+# Other
+*.tsbuildinfo
