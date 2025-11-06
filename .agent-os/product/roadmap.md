@@ -17,7 +17,7 @@
 - [ ] Event creation and management - CRUD operations for events with basic metadata (name, date, location) `S`
 - [ ] Basic timeline builder - Interface to add, edit, delete timeline items with time and description `L`
 - [ ] Timeline viewing interface - Clean, chronological display of timeline items for an event `M`
-- [ ] Project structure and configuration - Next.js setup, Supabase configuration, Tailwind + DaisyUI integration `S`
+- [x] Project structure and configuration - Next.js setup, Supabase configuration, Tailwind + DaisyUI integration `S`
 
 ### Should-Have Features
 
