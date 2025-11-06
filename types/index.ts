@@ -1,4 +1,10 @@
-// Type definitions will go here
+// Type definitions for Timeline application
 // This file serves as the main export point for custom TypeScript types
 
-export {};
+export type {
+  Database,
+  Tables,
+  TablesInsert,
+  TablesUpdate,
+  Enums,
+} from './database';

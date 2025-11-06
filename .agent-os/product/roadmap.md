@@ -13,7 +13,7 @@
 ### Must-Have Features
 
 - [ ] Authentication setup with Supabase Auth - User registration, login, logout, and session management `M`
-- [ ] Database schema design - Core tables for events, timeline_items, teams, and RLS policies `M`
+- [x] Database schema design - Core tables for events, timeline_items, teams, and RLS policies `M`
 - [ ] Event creation and management - CRUD operations for events with basic metadata (name, date, location) `S`
 - [ ] Basic timeline builder - Interface to add, edit, delete timeline items with time and description `L`
 - [ ] Timeline viewing interface - Clean, chronological display of timeline items for an event `M`
