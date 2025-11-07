@@ -34,15 +34,22 @@ export const CATEGORY_BADGE_CLASSES: Record<
 };
 
 /**
- * Combine event date with time input to create ISO timestamp
+ * Combine event date with time input to create ISO timestamp in user's local timezone
  * @param eventDate - Date string in YYYY-MM-DD format or full timestamp
  * @param timeInput - Time string in HH:MM format
- * @returns ISO 8601 timestamp string
+ * @returns ISO 8601 timestamp string with timezone
  */
 export function combineDateTime(eventDate: string, timeInput: string): string {
   // Extract just the date portion if it's a full timestamp
   const dateOnly = eventDate.split('T')[0];
-  return `${dateOnly}T${timeInput}:00`;
+
+  // Create a date object in the user's local timezone
+  const [hours, minutes] = timeInput.split(':').map(Number);
+  const date = new Date(dateOnly);
+  date.setHours(hours, minutes, 0, 0);
+
+  // Return ISO string which includes timezone offset
+  return date.toISOString();
 }
 
 /**
