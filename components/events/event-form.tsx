@@ -91,7 +91,7 @@ export function EventForm({ event, onSuccess, onCancel }: EventFormProps) {
           location: formData.location || null,
           description: formData.description || null,
           created_by: TEMP_USER_ID,
-          status: 'planning',
+          status: 'draft',
         });
 
         if (onSuccess) {

@@ -17,8 +17,9 @@ const STATUS_LABELS: Record<
   Database['public']['Enums']['event_status'],
   string
 > = {
-  planning: 'Planning',
-  in_progress: 'In Progress',
+  draft: 'Draft',
+  scheduled: 'Scheduled',
+  live: 'Live',
   completed: 'Completed',
   cancelled: 'Cancelled',
 };
@@ -27,10 +28,11 @@ const STATUS_BADGE_CLASSES: Record<
   Database['public']['Enums']['event_status'],
   string
 > = {
-  planning: 'badge-primary',
-  in_progress: 'badge-secondary',
+  draft: 'badge-ghost',
+  scheduled: 'badge-primary',
+  live: 'badge-secondary',
   completed: 'badge-accent',
-  cancelled: 'badge-ghost',
+  cancelled: 'badge-error',
 };
 
 export function EventCard({ event, onClick }: EventCardProps) {
