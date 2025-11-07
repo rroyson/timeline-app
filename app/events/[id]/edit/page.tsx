@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { getEventWithDetails } from '@/lib/database';
 import { EventForm } from '@/components/events';
+import { Breadcrumbs } from '@/components/layout';
 
 interface EditEventPageProps {
   params: Promise<{
@@ -27,6 +28,14 @@ export default async function EditEventPage({ params }: EditEventPageProps) {
 
   return (
     <main className="container mx-auto max-w-2xl px-4 py-8">
+      <Breadcrumbs
+        items={[
+          { label: 'Events', href: '/events' },
+          { label: event.name, href: `/events/${id}` },
+          { label: 'Edit' },
+        ]}
+      />
+
       <div className="mb-8">
         <h1 className="mb-2 text-3xl font-bold">Edit Event</h1>
         <p className="text-base-content/70">Update event details below</p>

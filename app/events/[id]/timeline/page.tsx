@@ -1,10 +1,9 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import { getEvent, getTimelineItems } from '@/lib/database';
 import { EmptyState } from '@/components/events';
 import { TimelineItemForm, TimelineList } from '@/components/timeline';
+import { Breadcrumbs } from '@/components/layout';
 
 interface TimelinePageProps {
   params: Promise<{
@@ -40,23 +39,21 @@ export default async function TimelinePage({ params }: TimelinePageProps) {
 
   return (
     <main className="container mx-auto max-w-6xl px-4 py-8">
+      <Breadcrumbs
+        items={[
+          { label: 'Events', href: '/events' },
+          { label: event.name, href: `/events/${id}` },
+          { label: 'Timeline' },
+        ]}
+      />
+
       {/* Header with event context */}
       <div className="mb-6">
-        <Link
-          href={`/events/${id}`}
-          className="btn btn-ghost btn-sm mb-4 gap-2"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to Event
-        </Link>
-
-        <div>
-          <h1 className="mb-2 text-3xl font-bold">Timeline: {event.name}</h1>
-          <p className="text-base-content/70">{formattedDate}</p>
-          {event.location && (
-            <p className="text-base-content/60 text-sm">{event.location}</p>
-          )}
-        </div>
+        <h1 className="mb-2 text-3xl font-bold">Timeline: {event.name}</h1>
+        <p className="text-base-content/70">{formattedDate}</p>
+        {event.location && (
+          <p className="text-base-content/60 text-sm">{event.location}</p>
+        )}
       </div>
 
       {/* Add Timeline Item Section */}
