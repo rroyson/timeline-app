@@ -33,7 +33,7 @@ export function Navbar() {
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
+            className="dropdown-content menu bg-base-100 rounded-box card-elevated z-50 mt-3 w-52 p-2"
           >
             <li>
               <a className="text-base-content/60 cursor-default">
