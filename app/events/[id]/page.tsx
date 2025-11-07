@@ -128,8 +128,6 @@ export default async function EventDetailPage({
             <EmptyState
               title="No timeline items yet"
               description="Start building your event timeline by adding timeline items"
-              actionLabel="Add First Item"
-              onAction={() => {}}
             />
           ) : (
             <div className="space-y-2">
