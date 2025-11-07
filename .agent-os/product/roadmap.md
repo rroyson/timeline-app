@@ -14,15 +14,15 @@
 
 - [ ] Authentication setup with Supabase Auth - User registration, login, logout, and session management `M`
 - [x] Database schema design - Core tables for events, timeline_items, teams, and RLS policies `M`
-- [ ] Event creation and management - CRUD operations for events with basic metadata (name, date, location) `S`
+- [x] Event creation and management - CRUD operations for events with basic metadata (name, date, location) `S`
 - [ ] Basic timeline builder - Interface to add, edit, delete timeline items with time and description `L`
 - [ ] Timeline viewing interface - Clean, chronological display of timeline items for an event `M`
 - [x] Project structure and configuration - Next.js setup, Supabase configuration, Tailwind + DaisyUI integration `S`
 
 ### Should-Have Features
 
-- [ ] Event list/dashboard - View all user's upcoming and past events `S`
-- [ ] Basic responsive design - Mobile-friendly layouts for timeline viewing `M`
+- [x] Event list/dashboard - View all user's upcoming and past events `S`
+- [x] Basic responsive design - Mobile-friendly layouts for timeline viewing `M`
 
 ### Dependencies
 
