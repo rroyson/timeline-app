@@ -172,3 +172,50 @@ body {
     border-color: var(--border-color-hover);
   }
 }
+
+/* Custom Utilities */
+@layer utilities {
+  /* Gradient backgrounds */
+  .gradient-primary {
+    background: linear-gradient(
+      135deg,
+      oklch(55% 0.25 240),
+      oklch(60% 0.25 260)
+    );
+  }
+
+  .gradient-secondary {
+    background: linear-gradient(
+      135deg,
+      oklch(60% 0.25 280),
+      oklch(65% 0.25 300)
+    );
+  }
+
+  /* Smooth transitions */
+  .transition-all-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Glow effects */
+  .hover\:shadow-glow:hover {
+    box-shadow: 0 0 20px 2px oklch(60% 0.25 280 / 0.4);
+  }
+
+  /* Subtle borders */
+  .border-subtle {
+    border-color: oklch(92% 0.01 240);
+  }
+
+  /* Card elevated */
+  .card-elevated {
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.1),
+      0 1px 2px -1px rgb(0 0 0 / 0.1);
+  }
+
+  /* Background variations */
+  .bg-base-50 {
+    background-color: oklch(99% 0.005 240);
+  }
+}
