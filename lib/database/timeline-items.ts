@@ -6,12 +6,11 @@ import type {
   TablesUpdate,
 } from '@/types/database';
 
-type TimelineItem = Tables<'timeline_items'>;
 type TimelineItemInsert = TablesInsert<'timeline_items'>;
 type TimelineItemUpdate = TablesUpdate<'timeline_items'>;
 
 /**
- * Get all timeline items for an event
+ * Get all timeline items for an event, sorted chronologically
  */
 export async function getTimelineItems(
   supabase: SupabaseClient<Database>,
@@ -21,7 +20,7 @@ export async function getTimelineItems(
     .from('timeline_items')
     .select('*')
     .eq('event_id', eventId)
-    .order('order_index', { ascending: true });
+    .order('start_time', { ascending: true });
 
   if (error) throw error;
   return data;

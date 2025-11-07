@@ -4,6 +4,7 @@ import { Calendar, MapPin, Edit, Plus } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import { getEventWithDetails } from '@/lib/database';
 import { DeleteEventButton, EmptyState } from '@/components/events';
+import { Breadcrumbs } from '@/components/layout';
 import { cn } from '@/lib/utils';
 import type { Database } from '@/types/database';
 
@@ -64,6 +65,10 @@ export default async function EventDetailPage({
 
   return (
     <main className="container mx-auto max-w-6xl px-4 py-8">
+      <Breadcrumbs
+        items={[{ label: 'Events', href: '/events' }, { label: event.name }]}
+      />
+
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <div className="mb-2 flex flex-wrap items-center gap-3">
@@ -128,8 +133,6 @@ export default async function EventDetailPage({
             <EmptyState
               title="No timeline items yet"
               description="Start building your event timeline by adding timeline items"
-              actionLabel="Add First Item"
-              onAction={() => {}}
             />
           ) : (
             <div className="space-y-2">
@@ -137,9 +140,12 @@ export default async function EventDetailPage({
                 {timelineItems.length} timeline{' '}
                 {timelineItems.length === 1 ? 'item' : 'items'}
               </p>
-              <p className="text-base-content/60 text-sm">
-                Timeline builder coming in next phase
-              </p>
+              <Link
+                href={`/events/${event.id}/timeline`}
+                className="text-primary text-sm hover:underline"
+              >
+                View and manage timeline →
+              </Link>
             </div>
           )}
         </div>
