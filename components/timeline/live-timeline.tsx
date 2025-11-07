@@ -445,7 +445,7 @@ export function LiveTimeline({
 
               {/* Main Content */}
               <div className="flex-1">
-                <h2 className="mb-6 text-5xl leading-tight font-bold lg:text-6xl">
+                <h2 className="text-base-content mb-6 text-5xl leading-tight font-bold lg:text-6xl">
                   {currentItem.title}
                 </h2>
                 {currentItem.description && (
