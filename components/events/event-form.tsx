@@ -90,7 +90,7 @@ export function EventForm({ event, onSuccess, onCancel }: EventFormProps) {
           event_date: formData.event_date,
           location: formData.location || null,
           description: formData.description || null,
-          owner_id: TEMP_USER_ID,
+          created_by: TEMP_USER_ID,
           status: 'planning',
         });
 
