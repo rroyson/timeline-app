@@ -183,13 +183,15 @@ export function LiveTimeline({
             {sortedItems.map((item, index) => (
               <div
                 key={item.id}
-                className="border-subtle bg-base-50 transition-all-smooth flex items-center gap-4 rounded-lg border p-4"
+                className="border-subtle bg-base-200 transition-all-smooth flex items-center gap-4 rounded-lg border p-4"
               >
-                <div className="text-base-content/40 bg-base-200 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm font-semibold">
+                <div className="text-base-content/40 bg-base-300 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm font-semibold">
                   {index + 1}
                 </div>
                 <div className="flex-1">
-                  <div className="font-semibold">{item.title}</div>
+                  <div className="text-base-content font-semibold">
+                    {item.title}
+                  </div>
                   <div className="text-base-content/60 text-sm">
                     {formatTime(new Date(item.start_time))}
                   </div>
@@ -565,8 +567,8 @@ export function LiveTimeline({
                     isCurrent
                       ? 'border-secondary/40 bg-secondary/10 hover:bg-secondary/20 ring-secondary/20 ring-2'
                       : isCompleted
-                        ? 'border-subtle bg-base-50 opacity-60 hover:opacity-80'
-                        : 'border-subtle bg-base-50 hover:bg-base-100'
+                        ? 'border-subtle bg-base-200 opacity-60 hover:opacity-80'
+                        : 'border-subtle bg-base-200 hover:bg-base-300'
                   )}
                   title="Double-click to jump to this item"
                 >
@@ -596,7 +598,7 @@ export function LiveTimeline({
                   <div className="min-w-0 flex-1">
                     <div
                       className={cn(
-                        'truncate text-sm font-semibold',
+                        'text-base-content truncate text-sm font-semibold',
                         isCompleted && 'line-through'
                       )}
                     >
