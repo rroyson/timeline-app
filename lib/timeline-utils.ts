@@ -34,13 +34,15 @@ export const CATEGORY_BADGE_CLASSES: Record<
 };
 
 /**
- * Combine event date (YYYY-MM-DD) with time input (HH:MM) to create ISO timestamp
- * @param eventDate - Date string in YYYY-MM-DD format
+ * Combine event date with time input to create ISO timestamp
+ * @param eventDate - Date string in YYYY-MM-DD format or full timestamp
  * @param timeInput - Time string in HH:MM format
  * @returns ISO 8601 timestamp string
  */
 export function combineDateTime(eventDate: string, timeInput: string): string {
-  return `${eventDate}T${timeInput}:00`;
+  // Extract just the date portion if it's a full timestamp
+  const dateOnly = eventDate.split('T')[0];
+  return `${dateOnly}T${timeInput}:00`;
 }
 
 /**
