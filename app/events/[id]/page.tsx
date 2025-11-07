@@ -128,8 +128,6 @@ export default async function EventDetailPage({
             <EmptyState
               title="No timeline items yet"
               description="Start building your event timeline by adding timeline items"
-              actionLabel="Add First Item"
-              onAction={() => {}}
             />
           ) : (
             <div className="space-y-2">
@@ -137,9 +135,12 @@ export default async function EventDetailPage({
                 {timelineItems.length} timeline{' '}
                 {timelineItems.length === 1 ? 'item' : 'items'}
               </p>
-              <p className="text-base-content/60 text-sm">
-                Timeline builder coming in next phase
-              </p>
+              <Link
+                href={`/events/${event.id}/timeline`}
+                className="text-primary text-sm hover:underline"
+              >
+                View and manage timeline →
+              </Link>
             </div>
           )}
         </div>
