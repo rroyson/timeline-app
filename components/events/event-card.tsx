@@ -20,6 +20,7 @@ const STATUS_LABELS: Record<
   draft: 'Draft',
   scheduled: 'Scheduled',
   live: 'Live',
+  paused: 'Paused',
   completed: 'Completed',
   cancelled: 'Cancelled',
 };
@@ -28,11 +29,12 @@ const STATUS_BADGE_CLASSES: Record<
   Database['public']['Enums']['event_status'],
   string
 > = {
-  draft: 'badge-ghost',
-  scheduled: 'badge-primary',
-  live: 'badge-secondary',
-  completed: 'badge-accent',
-  cancelled: 'badge-error',
+  draft: 'bg-base-300 text-base-content/70',
+  scheduled: 'bg-primary/10 text-primary font-medium',
+  live: 'bg-secondary/10 text-secondary font-medium shadow-sm',
+  paused: 'bg-warning/10 text-warning font-medium shadow-sm',
+  completed: 'bg-accent/10 text-accent font-medium',
+  cancelled: 'bg-error/10 text-error font-medium',
 };
 
 export function EventCard({ event, onClick }: EventCardProps) {

@@ -10,6 +10,8 @@ import {
   SkipForward,
   Edit3,
   AlertCircle,
+  Pause,
+  Square,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { Database } from '@/types/database';
@@ -153,7 +155,7 @@ export function LiveTimeline({
     );
   }
 
-  if (eventStatus !== 'live') {
+  if (eventStatus !== 'live' && eventStatus !== 'paused') {
     return (
       <div className="space-y-6">
         {/* Start Event Card */}
@@ -290,21 +292,125 @@ export function LiveTimeline({
     }
   };
 
+  const handlePauseEvent = async () => {
+    try {
+      const response = await fetch(`/api/events/${eventId}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'paused' }),
+      });
+
+      if (response.ok) {
+        router.refresh();
+      }
+    } catch (error) {
+      console.error('Failed to pause event:', error);
+    }
+  };
+
+  const handleResumeEvent = async () => {
+    try {
+      const response = await fetch(`/api/events/${eventId}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'live' }),
+      });
+
+      if (response.ok) {
+        router.refresh();
+      }
+    } catch (error) {
+      console.error('Failed to resume event:', error);
+    }
+  };
+
+  const handleEndEvent = async () => {
+    if (
+      !confirm(
+        'Are you sure you want to end this event? This will mark the event as completed.'
+      )
+    ) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/events/${eventId}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'completed' }),
+      });
+
+      if (response.ok) {
+        router.refresh();
+      }
+    } catch (error) {
+      console.error('Failed to end event:', error);
+    }
+  };
+
   return (
     <div className="flex min-h-[80vh] flex-col gap-6 lg:flex-row">
       {/* MAIN: Current Item - Takes up most of the screen */}
       <div className="flex-1 space-y-4 lg:space-y-6">
-        {/* Current Time - Smaller, top-right corner style */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="relative flex h-3 w-3">
-              <span className="bg-secondary absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
-              <span className="bg-secondary relative inline-flex h-3 w-3 rounded-full"></span>
+        {/* Current Time and Event Controls */}
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <div className="relative flex h-3 w-3">
+                <span
+                  className={cn(
+                    'absolute inline-flex h-full w-full rounded-full opacity-75',
+                    eventStatus === 'paused'
+                      ? 'bg-warning animate-pulse'
+                      : 'bg-secondary animate-ping'
+                  )}
+                ></span>
+                <span
+                  className={cn(
+                    'relative inline-flex h-3 w-3 rounded-full',
+                    eventStatus === 'paused' ? 'bg-warning' : 'bg-secondary'
+                  )}
+                ></span>
+              </div>
+              <span
+                className={cn(
+                  'text-sm font-semibold tracking-wide uppercase',
+                  eventStatus === 'paused' ? 'text-warning' : 'text-secondary'
+                )}
+              >
+                {eventStatus === 'paused' ? 'Paused' : 'Live'}
+              </span>
             </div>
-            <span className="text-secondary text-sm font-semibold tracking-wide uppercase">
-              Live
-            </span>
+
+            {/* Event Control Buttons */}
+            <div className="flex gap-2">
+              {eventStatus === 'paused' ? (
+                <button
+                  onClick={handleResumeEvent}
+                  className="btn btn-secondary btn-sm transition-all-smooth hover:shadow-glow shadow-md hover:scale-105"
+                >
+                  <Play className="h-4 w-4" />
+                  Resume
+                </button>
+              ) : (
+                <button
+                  onClick={handlePauseEvent}
+                  className="btn btn-warning btn-sm transition-all-smooth hover:shadow-glow shadow-md hover:scale-105"
+                >
+                  <Pause className="h-4 w-4" />
+                  Pause
+                </button>
+              )}
+              <button
+                onClick={handleEndEvent}
+                className="btn btn-error btn-sm transition-all-smooth hover:bg-error/90 border-2"
+              >
+                <Square className="h-4 w-4" />
+                End Event
+              </button>
+            </div>
           </div>
+
           <div className="border-subtle bg-base-100 flex items-center gap-3 rounded-full border px-4 py-2 shadow-sm">
             <Clock className="text-primary h-4 w-4" />
             <span className="text-lg font-bold tabular-nums">

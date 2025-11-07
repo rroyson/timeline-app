@@ -195,7 +195,13 @@ export type Database = {
       [_ in never]: never;
     };
     Enums: {
-      event_status: 'draft' | 'scheduled' | 'live' | 'completed' | 'cancelled';
+      event_status:
+        | 'draft'
+        | 'scheduled'
+        | 'live'
+        | 'paused'
+        | 'completed'
+        | 'cancelled';
       participant_role: 'owner' | 'coordinator' | 'vendor' | 'viewer';
       timeline_item_category:
         | 'setup'
@@ -334,7 +340,14 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      event_status: ['draft', 'scheduled', 'live', 'completed', 'cancelled'],
+      event_status: [
+        'draft',
+        'scheduled',
+        'live',
+        'paused',
+        'completed',
+        'cancelled',
+      ],
       participant_role: ['owner', 'coordinator', 'vendor', 'viewer'],
       timeline_item_category: [
         'setup',
